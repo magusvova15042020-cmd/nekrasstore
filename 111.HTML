@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEKRAS SHOP</title>
+  <style>
+    :root {
+      --bg: #07111c;
+      --panel: rgba(255,255,255,.05);
+      --panel2: rgba(255,255,255,.035);
+      --line: rgba(255,255,255,.10);
+      --text: #eef5ff;
+      --muted: #9eb3ca;
+      --accent: #5ec6ff;
+      --accent2: #7e7bff;
+      --green: #3fd3a2;
+      --orange: #ffbf66;
+      --red: #ff7b89;
+      --shadow: 0 28px 80px rgba(0,0,0,.35);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(94,198,255,.16), transparent 22%),
+        radial-gradient(circle at right, rgba(126,123,255,.10), transparent 26%),
+        linear-gradient(180deg, #050b15 0%, #08111c 100%);
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: min(1280px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      padding: 24px 0 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 23px;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn, select, input {
+      height: 46px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      padding: 0 14px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #8fa2ba;
+    }
+
+    .btn {
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #5ea6ff);
+      border: none;
+      color: #061420;
+    }
+
+    .icon-btn {
+      width: 46px;
+      padding: 0;
+      font-size: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+    }
+
+    .card {
+      border-radius: 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-main {
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(94,198,255,.14), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      position: relative;
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #9eddff;
+      background: rgba(94,198,255,.1);
+      border: 1px solid rgba(94,198,255,.18);
+    }
+
+    .hero-main h2 {
+      position: relative;
+      margin: 16px 0 12px;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -.04em;
+    }
+
+    .hero-main h2 span {
+      background: linear-gradient(90deg, #9fe7ff, #95adff, #d3a9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-main p {
+      position: relative;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
+    .hero-grid {
+      position: relative;
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .hero-tile {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+    }
+
+    .hero-tile strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .hero-tile span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .promo {
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(94,198,255,.16), rgba(126,123,255,.14));
+      border: 1px solid rgba(255,255,255,.09);
+    }
+
+    .promo h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .promo p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .layout {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 18px;
+    }
+
+    .sidebar {
+      padding: 20px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .sidebar p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      transition: .18s ease;
+    }
+
+    .chip.active {
+      background: white;
+      color: #07111c;
+    }
+
+    .products-wrap {
+      padding: 20px;
+    }
+
+    .products-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .products-head h3 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .products-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .product {
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      transition: .18s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-2px);
+    }
+
+    .thumb {
+      height: 180px;
+      display: flex;
+      align-items: end;
+      padding: 18px;
+      font-size: 24px;
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(94,198,255,.18), rgba(126,123,255,.16));
+    }
+
+    .product-body {
+      padding: 18px;
+    }
+
+    .product-body h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .product-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      min-height: 72px;
+    }
+
+    .meta {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(63,211,162,.12);
+      color: #8de7c8;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .mini-actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .mini-actions .btn {
+      flex: 1;
+    }
+
+    .cart {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 30;
+      width: min(390px, calc(100% - 24px));
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: #09111e;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: none;
+    }
+
+    .cart.open {
+      display: block;
+    }
+
+    .cart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cart-head h4 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .cart-body {
+      max-height: 60vh;
+      overflow-y: auto;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .cart-item {
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+    }
+
+    .cart-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cart-item span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .cart-foot {
+      padding: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .sum {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 40;
+    }
+
+    .modal.open {
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-box {
+      position: relative;
+      z-index: 1;
+      width: min(520px, calc(100% - 24px));
+      margin: 60px auto;
+      background: #09111e;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-head h4 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .close {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .modal-body input {
+      width: 100%;
+    }
+
+    .auth-switch {
+      display: flex;
+      gap: 10px;
+    }
+
+    .auth-switch button {
+      flex: 1;
+    }
+
+    .auth-note {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .success-box {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(63,211,162,.10);
+      border: 1px solid rgba(63,211,162,.18);
+      color: #8de7c8;
+      font-weight: 700;
+      display: none;
+    }
+
+    @media (max-width: 1160px) {
+      .hero,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner,
+      .products-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-grid,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions .btn,
+      .top-actions .icon-btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo">NS</div>
+        <div>
+          <h1>NEKRAS SHOP</h1>
+          <p>Магазин скинов и цифровых товаров</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn icon-btn" id="authIconBtn" title="Профиль">👤</button>
+        <button class="btn" id="loginBtn">Вход</button>
+        <button class="btn primary" id="registerBtn">Регистрация</button>
+        <button class="btn" id="cartToggle">Корзина</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-main card">
+        <div class="hero-badge">магазин скинов</div>
+        <h2>NEKRAS <span>NEKRAS</span></h2>
+        <p>
+          Стильный магазин с фильтрами, поиском, корзиной и авторизацией.
+          Такой макет уже можно показывать работодателю как коммерческий кейс.
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-tile">
+            <strong>24</strong>
+            <span>Скина в каталоге</span>
+          </div>
+          <div class="hero-tile">
+            <strong>3</strong>
+            <span>Категории товаров</span>
+          </div>
+          <div class="hero-tile">
+            <strong>1 клик</strong>
+            <span>Добавление в корзину</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side card">
+        <div class="promo">
+          <h3>Хит продаж</h3>
+          <p>Подборка популярных скинов и наборов для быстрого старта.</p>
+        </div>
+        <div class="promo">
+          <h3>Удобная структура</h3>
+          <p>Поиск, фильтры, сортировка и корзина уже работают внутри страницы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside class="sidebar card">
+        <h3>Фильтры</h3>
+        <p>Можно искать товары по названию и переключать категории.</p>
+
+        <div class="filter-group">
+          <input id="searchInput" type="text" placeholder="Поиск скина" />
+          <div class="chips" id="chips"></div>
+        </div>
+      </aside>
+
+      <section class="products-wrap card">
+        <div class="products-head">
+          <div>
+            <h3>Каталог</h3>
+            <p id="resultText">0 товаров найдено</p>
+          </div>
+
+          <div class="controls">
+            <select id="sortSelect">
+              <option value="default">По умолчанию</option>
+              <option value="cheap">Сначала дешевле</option>
+              <option value="expensive">Сначала дороже</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" id="productsGrid"></div>
+      </section>
+    </section>
+  </main>
+
+  <aside class="cart" id="cart">
+    <div class="cart-head">
+      <h4>Корзина</h4>
+      <button class="btn" id="cartClose">Закрыть</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot">
+      <div class="sum">
+        <span>Итого</span>
+        <span id="cartTotal">0 ₽</span>
+      </div>
+      <button class="btn primary" style="width:100%;">Оформить заказ</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="authModal">
+    <div class="overlay" id="authOverlay"></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <h4 id="authTitle">Вход</h4>
+        <button class="close" id="authClose">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="auth-switch">
+          <button class="btn" id="switchLogin">Вход</button>
+          <button class="btn primary" id="switchRegister">Регистрация</button>
+        </div>
+
+        <input type="text" id="nameField" placeholder="Имя" style="display:none;" />
+        <input type="text" id="loginField" placeholder="Логин" />
+        <input type="password" id="passwordField" placeholder="Пароль" />
+
+        <div class="success-box" id="successBox">Успешно!</div>
+
+        <button class="btn primary" id="submitAuth">Продолжить</button>
+
+        <div class="auth-note">
+          Это демонстрационный блок для портфолио. Здесь сделана визуальная логика входа и регистрации.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, title: "Nekras Classic", category: "skins", price: 799, badge: "популярный", desc: "Классический скин в фирменном стиле Nekras." },
+      { id: 2, title: "Nekras Black", category: "skins", price: 999, badge: "хит", desc: "Тёмный премиальный вариант скина для основного образа." },
+      { id: 3, title: "Nekras White", category: "skins", price: 949, badge: "новый", desc: "Светлая версия скина с чистым стильным образом." },
+      { id: 4, title: "Michael Versetti", category: "skins", price: 1299, badge: "редкий", desc: "Яркий персонажный скин для заметного игрового стиля." },
+      { id: 5, title: "Charles Henderson", category: "skins", price: 1199, badge: "редкий", desc: "Строгий и статусный образ для RP-игры." },
+      { id: 6, title: "Fabiano Polker", category: "skins", price: 1399, badge: "премиум", desc: "Премиальный скин для лидерского и статусного вида." },
+      { id: 7, title: "Jony Polker", category: "skins", price: 1349, badge: "премиум", desc: "Стильный игровой образ с выразительной подачей." },
+      { id: 8, title: "Keo Sykes", category: "skins", price: 1249, badge: "новый", desc: "Современный скин с аккуратным визуальным стилем." },
+
+      { id: 9, title: "Стартовый набор", category: "packs", price: 349, badge: "выгодно", desc: "Базовый комплект для нового игрока и быстрого старта." },
+      { id: 10, title: "VIP набор", category: "packs", price: 999, badge: "популярный", desc: "Набор бонусов, валюты и приятных игровых преимуществ." },
+      { id: 11, title: "Лидерский набор", category: "packs", price: 1699, badge: "топ", desc: "Расширенный комплект для тех, кто хочет выделяться." },
+      { id: 12, title: "RP набор", category: "packs", price: 749, badge: "новый", desc: "Подборка для комфортной RP-игры и оформления персонажа." },
+
+      { id: 13, title: "Премиум статус", category: "services", price: 599, badge: "услуга", desc: "Статус аккаунта с дополнительными возможностями." },
+      { id: 14, title: "Смена ника", category: "services", price: 299, badge: "услуга", desc: "Быстрая смена ника для обновления образа персонажа." },
+      { id: 15, title: "Смена внешности", category: "services", price: 399, badge: "услуга", desc: "Изменение внешнего вида персонажа через магазин." },
+      { id: 16, title: "Разблокировка слота", category: "services", price: 549, badge: "полезно", desc: "Открывает дополнительный слот под игрового персонажа." }
+    ];
+
+    const categoryNames = {
+      all: "Все",
+      skins: "Скины",
+      packs: "Наборы",
+      services: "Услуги"
+    };
+
+    let activeCategory = "all";
+    let cart = [];
+    let authMode = "login";
+
+    const chips = document.getElementById("chips");
+    const productsGrid = document.getElementById("productsGrid");
+    const searchInput = document.getElementById("searchInput");
+    const sortSelect = document.getElementById("sortSelect");
+    const resultText = document.getElementById("resultText");
+
+    const cartEl = document.getElementById("cart");
+    const cartBody = document.getElementById("cartBody");
+    const cartTotal = document.getElementById("cartTotal");
+
+    const authModal = document.getElementById("authModal");
+    const authTitle = document.getElementById("authTitle");
+    const nameField = document.getElementById("nameField");
+    const loginField = document.getElementById("loginField");
+    const passwordField = document.getElementById("passwordField");
+    const successBox = document.getElementById("successBox");
+
+    function renderChips() {
+      chips.innerHTML = "";
+      Object.entries(categoryNames).forEach(([key, label]) => {
+        const btn = document.createElement("button");
+        btn.className = `chip ${activeCategory === key ? "active" : ""}`;
+        btn.textContent = label;
+        btn.addEventListener("click", () => {
+          activeCategory = key;
+          renderChips();
+          renderProducts();
+        });
+        chips.appendChild(btn);
+      });
+    }
+
+    function filteredProducts() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      let result = products.filter((product) => {
+        const matchCategory = activeCategory === "all" || product.category === activeCategory;
+        const matchText = `${product.title} ${product.desc} ${product.category}`.toLowerCase().includes(query);
+        return matchCategory && matchText;
+      });
+
+      if (sortSelect.value === "cheap") {
+        result.sort((a, b) => a.price - b.price);
+      }
+
+      if (sortSelect.value === "expensive") {
+        result.sort((a, b) => b.price - a.price);
+      }
+
+      return result;
+    }
+
+    function renderProducts() {
+      const list = filteredProducts();
+      productsGrid.innerHTML = "";
+      resultText.textContent = `${list.length} товаров найдено`;
+
+      list.forEach((product) => {
+        const card = document.createElement("div");
+        card.className = "product";
+
+        card.innerHTML = `
+          <div class="thumb">${product.title}</div>
+          <div class="product-body">
+            <h4>${product.title}</h4>
+            <p>${product.desc}</p>
+            <div class="meta">
+              <div class="price">${product.price} ₽</div>
+              <div class="badge">${product.badge}</div>
+            </div>
+            <div class="mini-actions">
+              <button class="btn primary">В корзину</button>
+              <button class="btn">Купить</button>
+            </div>
+          </div>
+        `;
+
+        const buttons = card.querySelectorAll(".btn");
+        buttons[0].addEventListener("click", () => addToCart(product));
+        buttons[1].addEventListener("click", () => {
+          addToCart(product);
+          toggleCart(true);
+        });
+
+        productsGrid.appendChild(card);
+      });
+    }
+
+    function addToCart(product) {
+      cart.push(product);
+      renderCart();
+    }
+
+    function renderCart() {
+      cartBody.innerHTML = "";
+
+      if (!cart.length) {
+        cartBody.innerHTML = `<div class="empty">Корзина пока пустая</div>`;
+        cartTotal.textContent = "0 ₽";
+        return;
+      }
+
+      let sum = 0;
+
+      cart.forEach((product, index) => {
+        sum += product.price;
+
+        const item = document.createElement("div");
+        item.className = "cart-item";
+        item.innerHTML = `
+          <strong>${product.title}</strong>
+          <span>${product.price} ₽</span>
+          <div style="margin-top:10px;">
+            <button class="btn" style="width:100%;">Удалить</button>
+          </div>
+        `;
+
+        item.querySelector("button").addEventListener("click", () => {
+          cart.splice(index, 1);
+          renderCart();
+        });
+
+        cartBody.appendChild(item);
+      });
+
+      cartTotal.textContent = `${sum} ₽`;
+    }
+
+    function toggleCart(force) {
+      const open = force !== undefined ? force : !cartEl.classList.contains("open");
+      cartEl.classList.toggle("open", open);
+    }
+
+    function openAuth(mode) {
+      authMode = mode;
+      authModal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      successBox.style.display = "none";
+      updateAuthMode();
+    }
+
+    function closeAuth() {
+      authModal.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function updateAuthMode() {
+      if (authMode === "login") {
+        authTitle.textContent = "Вход";
+        nameField.style.display = "none";
+        document.getElementById("switchLogin").classList.add("primary");
+        document.getElementById("switchRegister").classList.remove("primary");
+      } else {
+        authTitle.textContent = "Регистрация";
+        nameField.style.display = "block";
+        document.getElementById("switchRegister").classList.add("primary");
+        document.getElementById("switchLogin").classList.remove("primary");
+      }
+    }
+
+    function submitAuth() {
+      if (!loginField.value.trim() || !passwordField.value.trim()) {
+        successBox.style.display = "block";
+        successBox.style.background = "rgba(255,123,137,.10)";
+        successBox.style.borderColor = "rgba(255,123,137,.18)";
+        successBox.style.color = "#ffb1bb";
+        successBox.textContent = "Заполни логин и пароль";
+        return;
+      }
+
+      if (authMode === "register" && !nameField.value.trim()) {
+        successBox.style.display = "block";
+        successBox.style.background = "rgba(255,123,137,.10)";
+        successBox.style.borderColor = "rgba(255,123,137,.18)";
+        successBox.style.color = "#ffb1bb";
+        successBox.textContent = "Заполни имя";
+        return;
+      }
+
+      successBox.style.display = "block";
+      successBox.style.background = "rgba(63,211,162,.10)";
+      successBox.style.borderColor = "rgba(63,211,162,.18)";
+      successBox.style.color = "#8de7c8";
+      successBox.textContent = authMode === "login"
+        ? "Вход выполнен успешно"
+        : "Регистрация прошла успешно";
+
+      loginField.value = "";
+      passwordField.value = "";
+      nameField.value = "";
+    }
+
+    document.getElementById("cartToggle").addEventListener("click", () => toggleCart());
+    document.getElementById("cartClose").addEventListener("click", () => toggleCart(false));
+
+    document.getElementById("loginBtn").addEventListener("click", () => openAuth("login"));
+    document.getElementById("registerBtn").addEventListener("click", () => openAuth("register"));
+    document.getElementById("authIconBtn").addEventListener("click", () => openAuth("login"));
+
+    document.getElementById("authClose").addEventListener("click", closeAuth);
+    document.getElementById("authOverlay").addEventListener("click", closeAuth);
+
+    document.getElementById("switchLogin").addEventListener("click", () => {
+      authMode = "login";
+      updateAuthMode();
+    });
+
+    document.getElementById("switchRegister").addEventListener("click", () => {
+      authMode = "register";
+      updateAuthMode();
+    });
+
+    document.getElementById("submitAuth").addEventListener("click", submitAuth);
+
+    searchInput.addEventListener("input", renderProducts);
+    sortSelect.addEventListener("change", renderProducts);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeAuth();
+        toggleCart(false);
+      }
+    });
+
+    renderChips();
+    renderProducts();
+    renderCart();
+    updateAuthMode();
+  </script>
+</body>
+</html>
