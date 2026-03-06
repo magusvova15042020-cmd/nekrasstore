@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEKRAS SHOP</title>
+  <link rel="stylesheet" href="store.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo">NS</div>
+        <div>
+          <h1>NEKRAS SHOP</h1>
+          <p>Магазин скинов и цифровых товаров</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn icon-btn" id="authIconBtn" title="Профиль">👤</button>
+        <button class="btn" id="loginBtn">Вход</button>
+        <button class="btn primary" id="registerBtn">Регистрация</button>
+        <button class="btn" id="cartToggle">Корзина</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-main card">
+        <div class="hero-badge">магазин скинов</div>
+        <h2>NEKRAS <span>NEKRAS</span></h2>
+        <p>
+          Стильный магазин с фильтрами, поиском, корзиной и авторизацией.
+          Такой макет уже можно показывать работодателю как коммерческий кейс.
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-tile">
+            <strong>24</strong>
+            <span>Скина в каталоге</span>
+          </div>
+          <div class="hero-tile">
+            <strong>3</strong>
+            <span>Категории товаров</span>
+          </div>
+          <div class="hero-tile">
+            <strong>1 клик</strong>
+            <span>Добавление в корзину</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side card">
+        <div class="promo">
+          <h3>Хит продаж</h3>
+          <p>Подборка популярных скинов и наборов для быстрого старта.</p>
+        </div>
+        <div class="promo">
+          <h3>Удобная структура</h3>
+          <p>Поиск, фильтры, сортировка и корзина уже работают внутри страницы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside class="sidebar card">
+        <h3>Фильтры</h3>
+        <p>Можно искать товары по названию и переключать категории.</p>
+
+        <div class="filter-group">
+          <input id="searchInput" type="text" placeholder="Поиск скина" />
+          <div class="chips" id="chips"></div>
+        </div>
+      </aside>
+
+      <section class="products-wrap card">
+        <div class="products-head">
+          <div>
+            <h3>Каталог</h3>
+            <p id="resultText">0 товаров найдено</p>
+          </div>
+
+          <div class="controls">
+            <select id="sortSelect">
+              <option value="default">По умолчанию</option>
+              <option value="cheap">Сначала дешевле</option>
+              <option value="expensive">Сначала дороже</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid" id="productsGrid"></div>
+      </section>
+    </section>
+  </main>
+
+  <aside class="cart" id="cart">
+    <div class="cart-head">
+      <h4>Корзина</h4>
+      <button class="btn" id="cartClose">Закрыть</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-foot">
+      <div class="sum">
+        <span>Итого</span>
+        <span id="cartTotal">0 ₽</span>
+      </div>
+      <button class="btn primary full-width">Оформить заказ</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="authModal">
+    <div class="overlay" id="authOverlay"></div>
+    <div class="modal-box">
+      <div class="modal-head">
+        <h4 id="authTitle">Вход</h4>
+        <button class="close" id="authClose">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="auth-switch">
+          <button class="btn" id="switchLogin">Вход</button>
+          <button class="btn primary" id="switchRegister">Регистрация</button>
+        </div>
+
+        <input type="text" id="nameField" placeholder="Имя" class="hidden-field" />
+        <input type="text" id="loginField" placeholder="Логин" />
+        <input type="password" id="passwordField" placeholder="Пароль" />
+
+        <div class="success-box" id="successBox">Успешно!</div>
+
+        <button class="btn primary full-width" id="submitAuth">Продолжить</button>
+
+        <div class="auth-note">
+          Это демонстрационный блок для портфолио. Здесь сделана визуальная логика входа и регистрации.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="store.js" defer></script>
+</body>
+</html>
